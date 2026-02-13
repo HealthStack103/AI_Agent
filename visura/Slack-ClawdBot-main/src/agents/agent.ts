@@ -122,11 +122,13 @@ If a tool fails, report the error. But ALWAYS TRY FIRST.
  * Slack tool definitions for OpenAI function calling.
  * These are the built-in Slack tools.
  */
+
+// below tooling function or interface function same as openai function
 const SLACK_TOOLS: OpenAI.Chat.ChatCompletionTool[] = [
   {
     type: 'function',
     function: {
-      name: 'search_knowledge_base',
+      name: 'search_knowledge_base', //
       description: 'PRIORITY TOOL: Search through indexed Slack message history using semantic search. Use this for ANY question about past discussions, topics, decisions, or finding what was said. Works even if bot cannot access channel live.',
       parameters: {
         type: 'object',
