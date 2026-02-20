@@ -1,0 +1,4 @@
+stdio- for to communicate client to mcp server in local
+http - for to communicate in production level
+
+https://youtu.be/rnljvmHorQw?si=9_tndwCwKyEcSsnd
