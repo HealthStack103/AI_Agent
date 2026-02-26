@@ -742,7 +742,7 @@ npm install
    - `reminders:read`
    - `reminders:write`
 6. Install to workspace
-7. Copy tokens:
+7. Copy tokens:ew
    - Bot Token: `xoxb-...`
    - App Token: `xapp-...`
    - User Token: `xoxp-...`
@@ -1195,3 +1195,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <p align="center">
   Built with ❤️ for productive Slack workspaces
 </p>
+
+
+---------------------------------- reference -----------------------------------
+slack - https://api.slack.com/apps/A0AJ1LWU77A/oauth?success=1
+anthropic api key - https://console.anthropic.com/settings/keys
+sonnet- https://docs.anthropic.com/claude/docs/models-overview
+
+
