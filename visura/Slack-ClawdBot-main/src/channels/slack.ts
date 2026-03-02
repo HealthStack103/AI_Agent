@@ -1,6 +1,8 @@
 import { App, LogLevel, SlackEventMiddlewareArgs, AllMiddlewareArgs } from '@slack/bolt';
 import { WebClient } from '@slack/web-api';
 import { config } from '../config/index.js';
+// production level if i store env or secret information in gcp secret mamger
+// import {SecretManagerServiceClient} from "@google-cloud/secret-manager";
 import { createModuleLogger } from '../utils/logger.js';
 import {
   getOrCreateSession,
@@ -16,13 +18,52 @@ import { taskScheduler } from '../tools/scheduler.js';
 const logger = createModuleLogger('slack');
 
 // Initialize Slack Bolt App
+// note: i think you can access it in diretly this initailze through env
 export const slackApp = new App({
   token: config.slack.botToken,
   appToken: config.slack.appToken,
   socketMode: true,
   logLevel: config.app.logLevel === 'debug' ? LogLevel.DEBUG : LogLevel.INFO,
 });
+// ----------------------production practice:------------------------
+// fetech secret manger and load 
+// import { SecretManagerServiceClient } from '@google-cloud/secret-manager';
 
+// const client = new SecretManagerServiceClient();
+
+// async function getSecret(name: string) {
+//   const [version] = await client.accessSecretVersion({
+//     name: `projects/YOUR_PROJECT_ID/secrets/${name}/versions/latest`,
+//   });
+
+//   return version.payload?.data?.toString();
+// }
+
+
+// async function loadConfig() {
+//   const botToken = await getSecret('slack-bot-token');
+//   const appToken = await getSecret('slack-app-token');
+//   const logLevel = await getSecret('log-level');
+
+//   return { botToken, appToken, logLevel };
+// }
+
+// (async () => {
+//   const config = await loadConfig();
+
+//   export const slackApp = new App({
+//     token: config.botToken,
+//     appToken: config.appToken,
+//     socketMode: true,
+//     logLevel:
+//       config.logLevel === 'debug'
+//         ? LogLevel.DEBUG
+//         : LogLevel.INFO,
+//   });
+// })();
+//note: still it consume more resource netwrok and sstartup time but security is ok
+
+//-----------------------------------------------------
 // WebClient for additional API calls
 export const webClient = new WebClient(config.slack.botToken);
 
