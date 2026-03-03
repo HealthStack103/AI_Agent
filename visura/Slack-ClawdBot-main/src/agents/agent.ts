@@ -3,7 +3,16 @@
  * 
  * This agent integrates:
  * 1. RAG (Retrieval Augmented Generation) - for Slack message history
- * 2. mem0 Long-Term Memory - for user preferences and context
+ * 2. mem0 Long-Term Memory - for user preferences and context4
+ *   -self improving ai memory layer for LLM application
+ *   - actually claudbot uses the 6 types of memeory but here we using the self improving ai memory layer
+ *   - instead of stroing in flatbuffer or .md formate memo stored memory in:
+ *      . automatically extract importeant facts from converstatoons
+ *      . stoeds them in structured memory
+ *       . retrives relevent memeories later
+ *       . updates/edits memories over time
+ *    note: it actually not retrain the model , change model weight, make the ai smarter internally
+ *  
  * 3. MCP (Model Context Protocol) - for GitHub, Notion, and other tools
  * 
  * HOW MCP WORKS:
