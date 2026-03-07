@@ -20,7 +20,6 @@
  * - "Name is Alex"
  * - "Role is senior engineer"
  * - "Working on payments project"
- * 
  * Later query: "What should I focus on?"
  * Retrieves: memories about current project → personalized response
  */
@@ -68,12 +67,12 @@ export async function initializeMemory(): Promise<void> {
     logger.info('Initializing mem0 cloud client...');
 
     const apiKey = process.env.MEM0_API_KEY;
-    if (!apiKey) {
+    if (!apiKey){
       throw new Error('MEM0_API_KEY environment variable is required');
     }
 
     // Import mem0ai MemoryClient for cloud API
-    const mem0Module = await import('mem0ai');
+    const mem0Module = await import('mem0ai');  // it means it is storing in cloud
     const MemoryClient = mem0Module.default || mem0Module.MemoryClient;
     
     if (!MemoryClient) {
@@ -293,3 +292,60 @@ export function getMemoryStatus(): {
     initialized: isInitialized,
   };
 }
+
+
+/* ----------------------------------------------------------   mem0-client in django ----------------------------
+- references:
+https://medium.com/@xavierjodoin/enhancing-memory-management-in-ai-applications-with-django-mem0-client-64344dcf8fe4
+
+benifits of Sjango Mem0 client:
+1. single data mangement 
+2/use djangos powerful admin interface to view ,search and mange memory history
+3. it use the ORM to we can easily analyse and interact
+4. it can support all databases that django supports -postgresql,mysql,..etc
+5. it can utilize django authentication and permission system for memory acces control
+i think like cors, accessmanger like that
+
+steps:
+1. install
+ pip install django-mem0-client
+
+2. add to installed apps
+  INSTALLED_APPS=[
+  #..other apps is there
+  mem0Client,]
+
+3. apply migrations 
+
+python manage.py migrate mem0client
+
+4. basic usecase code:
+
+from mem0.configs.base import MemoryConfig
+from mem0client.memory_client import DjangoMemory
+# Initialize the memory client
+memory = DjangoMemory()
+# Add a memory
+result = memory.add(
+    messages="John completed the quarterly sales report ahead of schedule.",
+    user_id="user123"
+)
+# Search for memories
+memories = memory.search(
+    query="sales report",
+    user_id="user123"
+)
+# Update a memory
+memory_id = memories["results"][0]["id"]
+memory.update(
+    memory_id=memory_id,
+    data="John completed the quarterly sales report two days ahead of schedule."
+)
+# Get memory history
+history = memory.history(memory_id)
+
+5. advanced features use cases:
+from django.http import JsonResponse
+from django.mem0client.memort_client impoer DjangoMmemory
+
+*/

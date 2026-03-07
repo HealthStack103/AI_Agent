@@ -15,8 +15,8 @@
  *  
  * 3. MCP (Model Context Protocol) - for GitHub, Notion, and other tools
  * 
- * HOW MCP WORKS:
- * --------------
+ * HOW MCP WORKS:---
+ * --------------    
  * 1. On startup, connects to configured MCP servers (GitHub, Notion)
  * 2. Discovers available tools from each server
  * 3. Merges MCP tools with Slack tools for the LLM
