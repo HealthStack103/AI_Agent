@@ -1,0 +1,54 @@
+# version: "3.9"
+
+# services:
+#   web:
+#     build: .
+#     container_name : django_mem0
+#     ports:
+#       - "8000:8000"
+#     volumes:
+#       - ./app:/app
+#     depends_on:
+#         - ollama
+
+#     #---- if i use environment variable, --------------------
+#     # environment:
+#     #   - OPENAI_API_KEY=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  # it is not working since billing is not enabled
+#     #   # another method is testing in offline mode using ollama
+    
+#     ollama:
+#       image: ollama/ollama:latest
+#       container_name : ollama
+#       ports:
+#         - "11434:11434"
+#       volumes:
+#         - ollama:/root/.ollama
+#   volumes:
+#     ollama:
+
+
+
+version: "3.9"
+
+services:
+
+  web:
+    build: .
+    container_name: django_mem0
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+    depends_on:
+      - ollama
+
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
+
+volumes:
+  ollama:
