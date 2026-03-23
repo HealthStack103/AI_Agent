@@ -1,17 +1,14 @@
 from mcp.server.fastmcp import FastMCP
 
-# Create FastMCP app
-mcp = FastMCP("learning-mcp")
+# Create an MCP instance with a name (no port argument here)
+mcp = FastMCP("fastmcp-demo")
 
-# Define a tool
+# Define a simple tool
 @mcp.tool()
 def add(a: float, b: float) -> float:
-    """Add two numbers"""
     return a + b
 
-
-# run this mcp dev server.py
-# verify that whether it is needed or not 
-#  $body = '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"add","arguments":{"a":5,"b":7}}}'
-# >> $body | python server.py
-# >> 
+# Start the server
+if __name__ == "__main__":
+    # No port argument — MCP reads default or environment port
+    mcp.run()

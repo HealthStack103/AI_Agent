@@ -2,3 +2,4 @@ stdio- for to communicate client to mcp server in local
 http - for to communicate in production level
 
 https://youtu.be/rnljvmHorQw?si=9_tndwCwKyEcSsnd
+https://github.com/zazencodes/zazencodes-season-2/tree/main/src/fastmcp-tutorial
