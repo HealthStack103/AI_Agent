@@ -2,10 +2,13 @@
 
 > **An intelligent Slack bot powered by RAG (Retrieval Augmented Generation), Long-Term Memory, and MCP (Model Context Protocol) for GitHub & Notion integration.**
 
-[![Node.js](https://img.shields.io/badge/Node.js-18%2B-green.svg)](https://nodejs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue.svg)](https://www.typescriptlang.org/)
-[![Slack](https://img.shields.io/badge/Slack-Bolt.js-purple.svg)](https://slack.dev/bolt-js/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+## problem statement 
+
+Agentic AI for Autonomous Enterprise Workflows
+
+
+
+
 
 ---
 

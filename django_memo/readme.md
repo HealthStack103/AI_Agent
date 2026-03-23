@@ -2,8 +2,6 @@ next steps:
 docker exec -it ollama ollama pull llama3
 docker exec -it ollama ollama pull nomic-embed-text
 
-
-
 errors:
 
 pulling 6a0746a1ec1a:  31% ▕█████████████████                                      ▏ 1.5 GB/4.7 GB
