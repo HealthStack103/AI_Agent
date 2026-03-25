@@ -71,6 +71,10 @@ import {
   isMemoryEnabled,
 } from '../memory-ai/index.js';
 
+export interface AgentConfig {
+  name?: string;
+  description?: string;
+}
 // MCP imports
 import {
   getAllMCPTools,
@@ -91,8 +95,12 @@ const openaiClient = new OpenAI({ apiKey: config.ai.openaiApiKey });
  * System prompt that explains RAG and MCP capabilities.
  * The agent knows it has access to historical Slack messages and external tools.
  */
-const SYSTEM_PROMPT = `You are a helpful AI assistant integrated into Slack.
+const SYSTEM_PROMPT_TEMPLATE = (agentConfig?: AgentConfig) => `
+You are ${agentConfig?.name || 'a helpful AI assistant integrated into Slack'}.
 
+${agentConfig?.description || ''}
+
+## MANDATORY TOOL USAGE - READ CAREFULLY:
 ## MANDATORY TOOL USAGE - READ CAREFULLY:
 
 You have access to GitHub and Notion via tools. You MUST use them.
@@ -252,6 +260,8 @@ const SLACK_TOOLS: OpenAI.Chat.ChatCompletionTool[] = [
       parameters: { type: 'object', properties: {} },
     },
   },
+
+
   // ============== MEMORY TOOLS ==============
   {
     type: 'function',
@@ -346,6 +356,7 @@ export interface AgentResponse {
   memoryUsed: boolean;
   memoriesCount: number;
 }
+// NEW: Agent configuration for multi-agent usage
 
 /**
  * Execute a tool call.
@@ -634,8 +645,9 @@ async function executeTool(
  */
 export async function processMessage(
   userMessage: string,
-  context: AgentContext
-): Promise<AgentResponse> {
+  context: AgentContext,
+  agentConfig?: AgentConfig // ✅ optional (won’t break existing code)
+): Promise<AgentResponse>{
   logger.info(`Processing message for session: ${context.sessionId}`);
 
   // Save user message to history
@@ -690,8 +702,9 @@ export async function processMessage(
 
   // 3. Build messages for LLM
   const history = getSessionHistory(context.sessionId);
+  const systemPrompt = SYSTEM_PROMPT_TEMPLATE(agentConfig);
   const messages: OpenAI.Chat.ChatCompletionMessageParam[] = [
-    { role: 'system', content: SYSTEM_PROMPT },
+    { role: 'system', content: systemPrompt },
   ];
 
   // Add memory context if available
