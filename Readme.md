@@ -9,9 +9,9 @@ Building an Agentic AI System for Autonomous Enterprise Workflows that executes 
 
 ## Team Details
 
-Yakshith K D – Team Lead and ML Developer
-Nithesh – Embedded AI Developer
-Sagar K – Flutter Developer
+Yakshith K D – Team Lead and ML Developer  ||
+Nithesh – Embedded AI Developer            ||
+Sagar K – Flutter Developer                ||
 
 ---
 
