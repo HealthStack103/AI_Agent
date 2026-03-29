@@ -1,65 +1,64 @@
+# ET Gen AI Hackathon 2026 – Autonomous Workflow Agent
 
-#  ET Gen AI Hackathon 2026 – Autonomous Workflow Agent
-
->  **Team: HealthStack103**
-> Building an **Agentic AI System for Autonomous Enterprise Workflows** that can execute multi-step tasks, self-correct errors, and maintain a full audit trail.
-
----
-
-## 👥 Team Details
-
-* **Yakshith K D** - Team  Lead  and ML developer
-* **Nithesh**      - Embedded Ai developer
-* **Sagar K**      - Flutter Developer
+> **Team: HealthStack103**
+> Building an **Agentic AI System for Autonomous Enterprise Workflows** that executes multi-step tasks, self-heals failures, and maintains full auditability.
 
 ---
 
-##  Problem Statement
+## Team Details
 
-### **Agentic AI for Autonomous Enterprise Workflows**
+* **Yakshith K D** – Team Lead & ML Developer
+* **Nithesh** – Embedded AI Developer
+* **Sagar K** – Flutter Developer
+
+---
+
+## Problem Statement
+
+### Agentic AI for Autonomous Enterprise Workflows
 
 Design a **multi-agent system** that:
 
 * Owns complex enterprise workflows end-to-end
 * Detects failures and self-recovers
 * Minimizes human intervention
-* Maintains **auditable decision trails**
+* Maintains auditable decision trails
 
 ---
 
-##  Project Overview
+## Project Overview
 
-This project extends a **Slack-based AI Assistant** into a **fully autonomous workflow orchestration system**.
+This project evolves a **Slack-based AI assistant** into a **fully autonomous workflow orchestration system**.
 
-Instead of just responding to queries, the system:
+Instead of just responding to messages, the system:
 
--  Executes multi-step enterprise workflows
--  Coordinates multiple specialized AI agents
--  Detects failures and self-corrects
--  Logs every decision for auditability
+* Executes multi-step enterprise workflows
+* Coordinates multiple specialized AI agents
+* Detects failures and self-recovers automatically
+* Logs every decision for auditability
 
 ---
 
-##  Use Case (Demo Workflow)
+## Use Case (Demo Workflow)
 
-###  Example: Meeting → Task → Execution Pipeline
+### Example: Meeting → Task → Execution Pipeline
 
 1. User shares meeting discussion in Slack
 2. AI extracts:
 
-   * Decisions
+   * Key decisions
    * Tasks
-   * Owners
-3. Assigns tasks automatically
-4. Tracks progress
-5. Detects delays
-6. Escalates or reassigns
+   * Responsible owners
+3. Automatically assigns tasks
+4. Tracks progress continuously
+5. Detects delays or inactivity
+6. Escalates or reassigns tasks
 
-👉 All without manual follow-up
+All without manual follow-up.
 
 ---
 
-## 🧠 Core Idea: Multi-Agent System
+## Core Idea: Multi-Agent System
 
 ```
 User → Orchestrator Agent → Specialized Agents → Execution → Monitoring → Self-Healing
@@ -67,11 +66,11 @@ User → Orchestrator Agent → Specialized Agents → Execution → Monitoring 
 
 ---
 
-## ⚙️ Key Features
+## Key Features
 
-### 🤖 1. Multi-Agent Orchestration
+### 1. Multi-Agent Orchestration
 
-* Orchestrator agent manages full workflow
+* Central **Orchestrator Agent** manages workflows
 * Specialized agents:
 
   * Task Extraction Agent
@@ -82,38 +81,39 @@ User → Orchestrator Agent → Specialized Agents → Execution → Monitoring 
 
 ---
 
-### 🔄 2. Autonomous Workflow Execution
+### 2. Autonomous Workflow Execution
 
-* End-to-end task handling
+* End-to-end task lifecycle management
 * Minimal human input required
-* Automatic task assignment & tracking
+* Automatic task assignment and tracking
 
 ---
 
-### 🛠 3. Self-Healing System
+### 3. Self-Healing System
 
-* Detects:
+System detects:
 
-  * Delays
-  * Failures
-  * Missing actions
-* Automatically:
+* Delays
+* Failures
+* Missing actions
 
-  * Retries
-  * Reassigns
-  * Escalates
+Automatically performs:
+
+* Retries
+* Reassignments
+* Escalations
 
 ---
 
-###  4. Audit Trail (Hackathon Key Requirement)
+### 4. Audit Trail (Hackathon Key Requirement)
 
-Every step is logged:
+Every step is logged in a structured format:
 
 ```
 [Time] → Agent → Action → Reason → Outcome
 ```
 
-Example:
+#### Example:
 
 ```
 10:02 → Task Agent → Created task → Based on meeting notes
@@ -126,20 +126,20 @@ Example:
 ### 5. Tool Integration (via MCP)
 
 * GitHub → Issues, PRs
-* Notion → Docs, tasks
+* Notion → Docs, databases
 * Slack → Communication
 
 ---
 
-###  6. RAG + Memory System
+### 6. RAG + Memory System
 
-* Retrieves past conversations
-* Remembers user preferences
-* Uses context for smarter decisions
+* Retrieves past Slack conversations (RAG)
+* Stores long-term user preferences (mem0)
+* Uses context to make smarter decisions
 
 ---
 
-## 🏗 Architecture
+## Architecture
 
 ### High-Level Architecture
 
@@ -169,21 +169,21 @@ Example:
 
 ---
 
-##  Workflow Lifecycle
+## Workflow Lifecycle
 
 1. Input received (Slack / API)
-2. Context built (RAG + Memory)
-3. Orchestrator decides workflow
-4. Agents execute tasks
-5. Monitor tracks progress
+2. Context built using RAG + Memory
+3. Orchestrator decides workflow plan
+4. Specialized agents execute tasks
+5. Monitoring agent tracks progress
 6. Errors handled automatically
 7. Audit logs stored
 
 ---
 
-##  Impact Model (IMPORTANT FOR HACKATHON)
+## Impact Model
 
-### ⏱ Time Savings
+### Time Savings
 
 | Task            | Manual | AI System |
 | --------------- | ------ | --------- |
@@ -191,16 +191,16 @@ Example:
 | Assignment      | 10 min | Instant   |
 | Follow-ups      | Daily  | Automated |
 
- **~70% reduction in workflow time**
+Approximately **70% reduction in workflow time**.
 
 ---
 
-###  Cost Reduction
+### Cost Reduction
 
 Assumption:
 
 * Manager hourly cost: ₹1000
-* 2 hrs saved/day
+* 2 hours saved per day
 
 ```
 Savings = ₹1000 × 2 × 22 days = ₹44,000/month per team
@@ -208,44 +208,45 @@ Savings = ₹1000 × 2 × 22 days = ₹44,000/month per team
 
 ---
 
-###  Efficiency Gains
+### Efficiency Gains
 
-* 0 missed tasks
+* No missed tasks
 * Faster execution
 * Real-time monitoring
+* Automatic recovery
 
 ---
 
-##  Example Scenario
+## Example Scenario
 
-**User Input:**
+### User Input:
 
 ```
 "We need to fix login bug, update docs, and deploy by Friday"
 ```
 
-**AI System Output:**
+### AI System Output:
 
-* Creates 3 tasks
-* Assigns owners
+* Creates structured tasks
+* Assigns owners automatically
 * Tracks deadlines
 * Sends reminders
 * Escalates if delayed
 
 ---
 
-##  Tech Stack
+## Tech Stack
 
-* **LLM:** GPT-4o
-* **Backend:** Node.js
-* **Slack API:** Bolt.js
-* **RAG:** ChromaDB
-* **Memory:** mem0
-* **Tool Integration:** MCP (GitHub + Notion)
+* LLM: GPT-4o
+* Backend: Node.js
+* Slack API: Bolt.js
+* RAG: ChromaDB
+* Memory: mem0
+* Tool Integration: MCP (GitHub + Notion)
 
 ---
 
-##  Installation
+## Installation
 
 ```bash
 git clone https://github.com/your-repo
@@ -256,7 +257,7 @@ npm run dev
 
 ---
 
-##  Project Structure
+## Project Structure
 
 ```
 src/
@@ -270,35 +271,41 @@ src/
 
 ---
 
-##  Demo (To be added)
+## Demo
 
- 3-minute walkthrough showing:
+3-minute walkthrough should include:
 
-* Input → Workflow execution
+* Input to workflow execution
 * Agent coordination
-* Auto error recovery
+* Automatic error recovery
+* Audit logging
 
 ---
 
-##  Submission Checklist
+## Submission Checklist
 
--  GitHub Repo
--  README (this file)
--  Pitch Video
--  Architecture Diagram
-- Impact Model (included above)
-
----
-
-##  Future Improvements
-
-* Add real enterprise workflows (HR, Finance)
-* Add predictive failure detection
-* Improve agent collaboration logic
-* Dashboard for workflow visibility
+* GitHub Repository
+* README
+* Pitch Video
+* Architecture Diagram
+* Impact Model
 
 ---
 
-##  Conclusion
+## Future Improvements
 
-This project transforms a **chatbot into an autonomous enterprise worker**:
+* Add enterprise workflows (HR, Finance, Operations)
+* Predictive failure detection
+* Improved agent collaboration logic
+* Workflow visualization dashboard
+
+---
+
+## Conclusion
+
+This project transforms a chatbot into an autonomous enterprise worker:
+
+* From reactive to proactive systems
+* From single-agent to multi-agent architecture
+* From manual workflows to autonomous execution
+
