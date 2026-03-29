@@ -1,8 +1,4 @@
-Got it — you want a **clean, professional README for your main repo** (AI_Agent) similar to what you pasted, **but structured better + with correct paths + no clutter**.
 
-Here’s your **final corrected README (ready to paste)** 👇
-
----
 
 # ET Gen AI Hackathon 2026 – Autonomous Workflow Agent
 
