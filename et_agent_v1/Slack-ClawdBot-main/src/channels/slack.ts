@@ -23,7 +23,8 @@ export const slackApp = new App({
   token: config.slack.botToken,
   appToken: config.slack.appToken,
   socketMode: true,
-  logLevel: config.app.logLevel === 'debug' ? LogLevel.DEBUG : LogLevel.INFO,
+  // logLevel: config.app.logLevel === 'debug' ? LogLevel.DEBUG : LogLevel.INFO,
+  logLevel: (config.app.logLevel === 'debug' ? LogLevel.DEBUG : LogLevel.INFO) as any,
 });
 // ----------------------production practice:------------------------
 // fetech secret manger and load 
@@ -178,7 +179,9 @@ slackApp.message(async ({ message, say }) => {
     return; // Skip bot messages, edits, etc.
   }
 
-  const { text, user, channel, ts, thread_ts } = message;
+  // const { text, user, channel, ts, thread_ts } = message;
+const { text, user, channel, ts } = message;
+const thread_ts = (message as any).thread_ts;
   if (!text || !user) return;
 
   const currentBotId = await getBotUserId();
@@ -399,7 +402,9 @@ slackApp.message(async ({ message, say }) => {
 
 // Handle app mentions
 slackApp.event('app_mention', async ({ event, say }) => {
-  const { user, channel, ts, thread_ts, text } = event;
+  // const { user, channel, ts, thread_ts, text } = event;
+  const { user, channel, ts, text } = event;
+const thread_ts = (event as any).thread_ts;
   
   logger.info(`App mentioned by ${user} in ${channel}`);
 

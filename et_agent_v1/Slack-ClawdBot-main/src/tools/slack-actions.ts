@@ -5,10 +5,15 @@ import { createModuleLogger } from '../utils/logger.js';
 const logger = createModuleLogger('slack-actions');
 
 // Initialize Slack client with logging
-const webClient = new WebClient(config.slack.botToken, {
-  logLevel: config.app.logLevel === 'debug' ? 'DEBUG' : 'INFO',
-});
+// const webClient = new WebClient(config.slack.botToken, {
+//   logLevel: config.app.logLevel === 'debug' ? 'DEBUG' : 'INFO',
+// });
+import { LogLevel } from "@slack/web-api";
 
+// Initialize Slack client with logging
+const webClient = new WebClient(config.slack.botToken, {
+  logLevel: (config.app.logLevel === 'debug' ? LogLevel.DEBUG : LogLevel.INFO) as any,
+});
 // User client for reminders (requires xoxp- token)
 const userClient = config.slack.userToken 
   ? new WebClient(config.slack.userToken)
