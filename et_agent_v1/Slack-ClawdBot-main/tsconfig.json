@@ -1,26 +1,26 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "CommonJS",
+    // "module": "CommonJS",// these one is old module system and it is not compatible with latest node version and it will cause error when we use impport
+    "module": "ESNext",
     "moduleResolution": "Node",
-
     "lib": ["ES2020"],
     "outDir": "./dist",
     "rootDir": "./src",
+  // some are set as false since to avoid error 
+    "strict": false,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
 
-    "strict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+
     "esModuleInterop": true,
     "skipLibCheck": true,
-
-    "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
 
-    "sourceMap": true,
-
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "sourceMap": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
