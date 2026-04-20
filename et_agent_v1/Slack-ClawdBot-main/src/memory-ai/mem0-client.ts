@@ -67,9 +67,13 @@ export async function initializeMemory(): Promise<void> {
     logger.info('Initializing mem0 cloud client...');
 
     const apiKey = process.env.MEM0_API_KEY;
-    if (!apiKey){
-      throw new Error('MEM0_API_KEY environment variable is required');
-    }
+    // if (!apiKey){
+    //   throw new Error('MEM0_API_KEY environment variable is required');  // this condition behavees like strict mode for mem0 integration
+    // }
+  if (!apiKey) {
+  logger.warn('MEM0_API_KEY not found → memory disabled');
+  return;
+}
 
     // Import mem0ai MemoryClient for cloud API
     const mem0Module = await import('mem0ai');  // it means it is storing in cloud
