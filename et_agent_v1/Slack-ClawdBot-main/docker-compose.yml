@@ -7,6 +7,8 @@ services:
       dockerfile: Dockerfile
     container_name: slack-ai-assistant
     restart: unless-stopped
+    # ports:
+    #    - "8080:8080"   -------------------------- this is not need since it will not expose the http endpoint since it is websocket whcih is the full duplex 
     environment:
       # Slack Configuration
       - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
@@ -50,7 +52,7 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
-
+    
 volumes:
   assistant-data:
     driver: local
