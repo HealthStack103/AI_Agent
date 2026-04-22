@@ -37,6 +37,10 @@ import { initializeMCP, shutdownMCP, isMCPEnabled, getConnectedServers } from '.
 
 const logger = createModuleLogger('main');
 
+// for promethus metrics 
+// import { startMetricsServer } from "./utils/metrics";
+import { startMetricsServer } from "./utils/metrics.js";
+startMetricsServer();
 /**
  * Initialize all services and start the application.
  */

@@ -2,11 +2,12 @@
   "compilerOptions": {
     "target": "ES2020",
     // "module": "CommonJS",// these one is old module system and it is not compatible with latest node version and it will cause error when we use impport
-    "module": "ESNext",
-    "moduleResolution": "Node",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "lib": ["ES2020"],
     "outDir": "./dist",
     "rootDir": "./src",
+
   // some are set as false since to avoid error 
     "strict": false,
     "noImplicitAny": false,
@@ -25,3 +26,36 @@
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }
+
+
+
+
+
+
+// {
+//   "compilerOptions": {
+//     "target": "ES2020",
+//     // "module": "CommonJS",// these one is old module system and it is not compatible with latest node version and it will cause error when we use impport
+//     "module": "ESNext",
+//     "moduleResolution": "Node",
+//     "lib": ["ES2020"],
+//     "outDir": "./dist",
+//     "rootDir": "./src",
+//   // some are set as false since to avoid error 
+//     "strict": false,
+//     "noImplicitAny": false,
+//     "strictNullChecks": false,
+
+//     "noUnusedLocals": false,
+//     "noUnusedParameters": false,
+
+//     "esModuleInterop": true,
+//     "skipLibCheck": true,
+//     "resolveJsonModule": true,
+//     "forceConsistentCasingInFileNames": true,
+
+//     "sourceMap": true
+//   },
+//   "include": ["src/**/*"],
+//   "exclude": ["node_modules", "dist"]
+// }
