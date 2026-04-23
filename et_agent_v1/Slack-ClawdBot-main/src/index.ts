@@ -29,18 +29,17 @@ import { taskScheduler } from './tools/scheduler.js';
 // RAG imports
 import { initializeVectorStore, startIndexer, stopIndexer, getDocumentCount } from './rag/index.js';
 
-// Memory imports (mem0)
+// // Memory imports (mem0)
 import { initializeMemory, isMemoryEnabled } from './memory-ai/index.js';
 
 // MCP imports
 import { initializeMCP, shutdownMCP, isMCPEnabled, getConnectedServers } from './mcp/index.js';
-
 const logger = createModuleLogger('main');
 
-// for promethus metrics 
-// import { startMetricsServer } from "./utils/metrics";
-import { startMetricsServer } from "./utils/metrics.js";
-startMetricsServer();
+// // for promethus metrics 
+// // import { startMetricsServer } from "./utils/metrics";
+// import { startMetricsServer } from "./utils/metrics.js";
+// startMetricsServer();
 /**
  * Initialize all services and start the application.
  */

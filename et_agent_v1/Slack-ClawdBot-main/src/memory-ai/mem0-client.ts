@@ -25,9 +25,9 @@
  */
 
 import { config } from '../config/index.js';
-import { createModuleLogger } from '../utils/logger.js';
+import { createModuleLogger, logger } from '../utils/logger.js';
 
-const logger = createModuleLogger('mem0-client');
+// const logger = createModuleLogger('mem0-client');
 
 // Types for mem0 responses
 export interface MemoryItem {
@@ -57,6 +57,8 @@ let isInitialized = false;
  * 
  * Uses mem0 Cloud API with MEM0_API_KEY.
  */
+
+
 export async function initializeMemory(): Promise<void> {
   if (isInitialized) {
     logger.debug('Memory already initialized');
@@ -83,13 +85,21 @@ export async function initializeMemory(): Promise<void> {
       throw new Error('MemoryClient not found in mem0ai package');
     }
 
+
+//  ----------------------- below is the code for local mem0 client which is not used in this project but can be used in future if we want to use local mem0 client instead of cloud one -----------------------
+
     // Initialize cloud client
-    memoryInstance = new MemoryClient({ apiKey });
+  //   memoryInstance = new MemoryClient({ ENABLE_MEMORY:false});
     
-    isInitialized = true;
-    logger.info('✅ mem0 cloud client initialized');
-  } catch (error: any) {
-    logger.error(`Failed to initialize mem0: ${error.message}`);
+  //   isInitialized = true;
+  //   logger.info('✅ mem0 cloud client initialized');
+
+// --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+  }
+  catch (error: any) {
+     logger.error(`Failed to initialize mem0: ${error.message}`);
     logger.error(`Stack: ${error.stack}`);
     logger.warn('Memory features will be disabled');
     isInitialized = false;

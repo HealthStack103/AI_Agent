@@ -7,8 +7,7 @@
  * ------------
  * 
  * 1. Initialize memory:
- *    ```typescript
- *    import { initializeMemory } from './memory-ai';
+import { initializeMemory } from './memory-ai';
  *    await initializeMemory();
  *    ```
  * 
