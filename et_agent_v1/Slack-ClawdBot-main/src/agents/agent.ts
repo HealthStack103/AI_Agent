@@ -864,6 +864,7 @@
  */
 
 import OpenAI from 'openai';
+import { GoogleGenerativeAI } from '@google/generative-ai'; // ✅ NEW (Gemini)
 import { WebClient } from '@slack/web-api';
 import { config } from '../config/index.js';
 import { createModuleLogger } from '../utils/logger.js';
@@ -917,7 +918,13 @@ import {
 } from '../mcp/index.js';
 
 const logger = createModuleLogger('agent');
-const openaiClient = new OpenAI({ apiKey: config.ai.openaiApiKey });
+
+// ❌ OLD (OpenAI)
+// const openaiClient = new OpenAI({ apiKey: config.ai.openaiApiKey });
+
+// ✅ NEW (Gemini)
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
+const geminiModel = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
 /**
  * ✅ NEW: AgentConfig for multi-agent support
@@ -994,7 +1001,6 @@ const SLACK_TOOLS: OpenAI.Chat.ChatCompletionTool[] = [
       },
     },
   },
-  // ⚠️ KEEP ALL YOUR OTHER TOOLS EXACTLY AS BEFORE (UNCHANGED)
 ];
 
 /**
@@ -1037,7 +1043,7 @@ export interface AgentResponse {
 }
 
 /**
- * Tool execution (UNCHANGED CORE)
+ * Tool execution (UNCHANGED)
  */
 async function executeTool(
   name: string,
@@ -1078,7 +1084,7 @@ async function executeTool(
 }
 
 /**
- * ✅ UPDATED: processMessage with multi-agent support
+ * ✅ UPDATED: processMessage (Gemini used instead of OpenAI)
  */
 export async function processMessage(
   userMessage: string,
@@ -1095,7 +1101,6 @@ export async function processMessage(
   let ragUsed = false;
   let memoryUsed = false;
 
-  // Memory
   if (config.memory.enabled && isMemoryEnabled()) {
     const memories = await searchMemory(userMessage, context.userId, 5);
     if (memories.length) {
@@ -1104,7 +1109,6 @@ export async function processMessage(
     }
   }
 
-  // RAG
   if (config.rag.enabled && shouldUseRAG(userMessage)) {
     const results = await retrieve(userMessage, {});
     if (results.results.length) {
@@ -1115,72 +1119,30 @@ export async function processMessage(
 
   const systemPrompt = SYSTEM_PROMPT_TEMPLATE(agentConfig);
 
-  const messages: OpenAI.Chat.ChatCompletionMessageParam[] = [
-    { role: 'system', content: systemPrompt },
-  ];
+  const fullPrompt = `
+${systemPrompt}
 
-  if (memoryContext) {
-    messages.push({ role: 'system', content: memoryContext });
-  }
+${memoryContext}
 
-  if (ragContext) {
-    messages.push({ role: 'system', content: ragContext });
-  }
+${ragContext}
 
-  const history = getSessionHistory(context.sessionId);
+User: ${userMessage}
+`;
 
-  for (const msg of history.slice(-10)) {
-    messages.push({
-      role: msg.role as 'user' | 'assistant',
-      content: msg.content,
-    });
-  }
-
-  messages.push({ role: 'user', content: userMessage });
-
-  const tools = getAllTools();
-
-  let response = await openaiClient.chat.completions.create({
-    model: config.ai.defaultModel.includes('gpt') ? config.ai.defaultModel : 'gpt-4o',
+  // ❌ OLD OpenAI call (kept for reference)
+  /*
+  const response = await openaiClient.chat.completions.create({
+    model: 'gpt-4o',
     messages,
-    tools,
-    tool_choice: 'auto',
   });
+  */
 
-  let assistantMessage = response.choices[0]?.message;
-
-  while (assistantMessage?.tool_calls) {
-    messages.push(assistantMessage);
-
-    for (const toolCall of assistantMessage.tool_calls) {
-      const args = JSON.parse(toolCall.function.arguments);
-
-      const result = await executeTool(
-        toolCall.function.name,
-        args
-      );
-
-      messages.push({
-        role: 'tool',
-        tool_call_id: toolCall.id,
-        content: result,
-      });
-    }
-
-    response = await openaiClient.chat.completions.create({
-      model: config.ai.defaultModel.includes('gpt') ? config.ai.defaultModel : 'gpt-4o',
-      messages,
-      tools,
-    });
-
-    assistantMessage = response.choices[0]?.message;
-  }
-
-  const content = assistantMessage?.content || 'Error';
+  // ✅ NEW Gemini call
+  const result = await geminiModel.generateContent(fullPrompt);
+  const content = result.response.text();
 
   addMessage(context.sessionId, 'assistant', content);
 
-  // Store memory async
   if (config.memory.enabled && isMemoryEnabled()) {
     addMemory([
       { role: 'user', content: userMessage },
@@ -1204,7 +1166,7 @@ export async function processMessage(
 export { processMessage as default };
 
 /**
- * Thread summarizer (UNCHANGED)
+ * Thread summarizer (UPDATED TO GEMINI)
  */
 export async function summarizeThread(
   messages: Message[],
@@ -1213,13 +1175,9 @@ export async function summarizeThread(
 
   const text = messages.map(m => `[${m.role}]: ${m.content}`).join('\n\n');
 
-  const res = await openaiClient.chat.completions.create({
-    model: 'gpt-4o',
-    messages: [
-      { role: 'system', content: 'Summarize conversation' },
-      { role: 'user', content: text },
-    ],
-  });
+  const result = await geminiModel.generateContent(
+    `Summarize this conversation:\n\n${text}`
+  );
 
-  return res.choices[0]?.message?.content || 'Failed';
+  return result.response.text() || 'Failed';
 }
