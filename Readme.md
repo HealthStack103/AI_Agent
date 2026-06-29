@@ -4,17 +4,6 @@
 
 An AI-powered multi-agent system that automates rural health worker attendance monitoring, verification, reporting, and compliance. The platform leverages Google AI technologies to reduce manual supervision, improve accountability, and enable data-driven healthcare administration.
 
----
-
-# Team
-
-**HealthStack103**
-
-* **Yakshith K D** – Team Lead & AI/ML Developer
-* **Nithesh** – Embedded AI Developer
-* **Sagar K** – Flutter Developer
-
----
 
 # Problem Statement
 
