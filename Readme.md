@@ -1,25 +1,23 @@
-
-
 # ET Gen AI Hackathon 2026 – Autonomous Workflow Agent
 
-Team: HealthStack103
-Building an Agentic AI System for Autonomous Enterprise Workflows that executes multi-step tasks, self-heals failures, and maintains full auditability.
+> **Team: HealthStack103**
+> Building an **Agentic AI System for Autonomous Enterprise Workflows** that executes multi-step tasks, self-heals failures, and maintains full auditability.
 
 ---
 
 ## Team Details
 
-Yakshith K D – Team Lead and ML Developer  ||
-Nithesh – Embedded AI Developer            ||
-Sagar K – Flutter Developer                ||
+* **Yakshith K D** – Team Lead & ML Developer
+* **Nithesh** – Embedded AI Developer
+* **Sagar K** – Flutter Developer
 
 ---
 
 ## Problem Statement
 
-Agentic AI for Autonomous Enterprise Workflows
+### Agentic AI for Autonomous Enterprise Workflows
 
-Design a multi-agent system that:
+Design a **multi-agent system** that:
 
 * Owns complex enterprise workflows end-to-end
 * Detects failures and self-recovers
@@ -30,7 +28,7 @@ Design a multi-agent system that:
 
 ## Project Overview
 
-This project transforms a Slack-based AI assistant into a fully autonomous workflow orchestration system.
+This project evolves a **Slack-based AI assistant** into a **fully autonomous workflow orchestration system**.
 
 Instead of just responding to messages, the system:
 
@@ -41,33 +39,30 @@ Instead of just responding to messages, the system:
 
 ---
 
-## Repository Structure
+## Use Case (Demo Workflow)
 
-Main project is located at:
+### Example: Meeting → Task → Execution Pipeline
 
-```
-AI_Agent/et_agent_v1/Slack-ClawdBot-main/
-```
+1. User shares meeting discussion in Slack
+2. AI extracts:
 
-### Folder Breakdown
+   * Key decisions
+   * Tasks
+   * Responsible owners
+3. Automatically assigns tasks
+4. Tracks progress continuously
+5. Detects delays or inactivity
+6. Escalates or reassigns tasks
 
-```
-src/                  → Core AI agent logic
-src/agents/           → Specialized agents (Task, Decision, etc.)
-src/orchestrator/     → Workflow orchestration logic
-src/rag/              → Retrieval Augmented Generation (Slack history)
-src/memory/           → Long-term memory (mem0)
-src/mcp/              → Tool integrations (GitHub, Notion)
-src/tools/            → Slack + automation tools
-scripts/              → Setup and utility scripts
-docs/                 → Documentation and diagrams
-```
+All without manual follow-up.
 
 ---
 
 ## Core Idea: Multi-Agent System
 
+```
 User → Orchestrator Agent → Specialized Agents → Execution → Monitoring → Self-Healing
+```
 
 ---
 
@@ -75,15 +70,14 @@ User → Orchestrator Agent → Specialized Agents → Execution → Monitoring 
 
 ### 1. Multi-Agent Orchestration
 
-Central Orchestrator Agent manages workflows.
+* Central **Orchestrator Agent** manages workflows
+* Specialized agents:
 
-Specialized agents:
-
-* Task Extraction Agent
-* Decision Agent
-* Execution Agent
-* Monitoring Agent
-* Audit Agent
+  * Task Extraction Agent
+  * Decision Agent
+  * Execution Agent
+  * Monitoring Agent
+  * Audit Agent
 
 ---
 
@@ -111,24 +105,28 @@ Automatically performs:
 
 ---
 
-### 4. Audit Trail
+### 4. Audit Trail (Hackathon Key Requirement)
 
-Every step is logged in structured format:
+Every step is logged in a structured format:
 
+```
 [Time] → Agent → Action → Reason → Outcome
+```
 
-Example:
+#### Example:
 
+```
 10:02 → Task Agent → Created task → Based on meeting notes
-10:10 → Monitoring Agent → Delay detected → No update from owner
-10:11 → Orchestrator Agent → Reassigned → Backup user assigned
+10:10 → Monitor → Delay detected → No update from owner
+10:11 → Orchestrator → Reassigned → Backup user assigned
+```
 
 ---
 
-### 5. Tool Integration (MCP)
+### 5. Tool Integration (via MCP)
 
-* GitHub → Issues, Pull Requests
-* Notion → Pages, Databases
+* GitHub → Issues, PRs
+* Notion → Docs, databases
 * Slack → Communication
 
 ---
@@ -136,14 +134,44 @@ Example:
 ### 6. RAG + Memory System
 
 * Retrieves past Slack conversations (RAG)
-* Stores long-term user context (mem0)
-* Uses context for better decision making
+* Stores long-term user preferences (mem0)
+* Uses context to make smarter decisions
+
+---
+
+## Architecture
+
+### High-Level Architecture
+
+```
+┌──────────────┐
+│   USER       │
+└──────┬───────┘
+       ▼
+┌──────────────┐
+│ Slack Layer  │
+└──────┬───────┘
+       ▼
+┌────────────────────────────┐
+│  ORCHESTRATOR AGENT        │
+└──────┬────────────┬────────┘
+       ▼            ▼
+┌────────────┐  ┌────────────┐
+│ Task Agent │  │ Decision   │
+└────────────┘  └────────────┘
+       ▼            ▼
+┌────────────┐  ┌────────────┐
+│ Execution  │  │ Monitoring │
+└────────────┘  └────────────┘
+       ▼            ▼
+     Tools       Audit Logs
+```
 
 ---
 
 ## Workflow Lifecycle
 
-1. Input received via Slack
+1. Input received (Slack / API)
 2. Context built using RAG + Memory
 3. Orchestrator decides workflow plan
 4. Specialized agents execute tasks
@@ -153,12 +181,51 @@ Example:
 
 ---
 
+## Impact Model
+
+### Time Savings
+
+| Task            | Manual | AI System |
+| --------------- | ------ | --------- |
+| Task extraction | 30 min | 2 min     |
+| Assignment      | 10 min | Instant   |
+| Follow-ups      | Daily  | Automated |
+
+Approximately **70% reduction in workflow time**.
+
+---
+
+### Cost Reduction
+
+Assumption:
+
+* Manager hourly cost: ₹1000
+* 2 hours saved per day
+
+```
+Savings = ₹1000 × 2 × 22 days = ₹44,000/month per team
+```
+
+---
+
+### Efficiency Gains
+
+* No missed tasks
+* Faster execution
+* Real-time monitoring
+* Automatic recovery
+
+---
+
 ## Example Scenario
 
-User Input:
-"We need to fix login bug, update docs, and deploy by Friday"
+### User Input:
 
-System Output:
+```
+"We need to fix login bug, update docs, and deploy by Friday"
+```
+
+### AI System Output:
 
 * Creates structured tasks
 * Assigns owners automatically
@@ -170,50 +237,48 @@ System Output:
 
 ## Tech Stack
 
-LLM: GPT-4o
-Backend: Node.js
-Slack API: Bolt.js
-RAG: ChromaDB
-Memory: mem0
-Tool Integration: MCP
+* LLM: GPT-4o
+* Backend: Node.js
+* Slack API: Bolt.js
+* RAG: ChromaDB
+* Memory: mem0
+* Tool Integration: MCP (GitHub + Notion)
 
 ---
 
 ## Installation
 
-```
+```bash
 git clone https://github.com/your-repo
-cd AI_Agent/et_agent_v1/Slack-ClawdBot-main
+cd project
 npm install
 npm run dev
 ```
 
 ---
 
-## Demo Instructions
+## Project Structure
 
-For submission demo:
-
-* Show Slack input
-* Show workflow execution
-* Show agent coordination
-* Show automatic error recovery
-* Show audit logs
+```
+src/
+├── agents/          # Multi-agent logic
+├── orchestrator/    # Workflow controller
+├── rag/             # Context retrieval
+├── memory/          # Long-term memory
+├── mcp/             # Tool integrations
+├── slack/           # Slack interface
+```
 
 ---
 
-## Impact Model
+## Demo
 
-Time Savings:
+3-minute walkthrough should include:
 
-* Task extraction: 30 min → 2 min
-* Assignment: 10 min → Instant
-* Follow-ups: Manual → Automated
-
-Approximately 70% reduction in workflow time
-
-Cost Savings:
-₹1000 × 2 hrs × 22 days = ₹44,000/month per team
+* Input to workflow execution
+* Agent coordination
+* Automatic error recovery
+* Audit logging
 
 ---
 
@@ -221,18 +286,18 @@ Cost Savings:
 
 * GitHub Repository
 * README
+* Pitch Video
 * Architecture Diagram
-* PPT / Document
-* Demo Video (optional but recommended)
+* Impact Model
 
 ---
 
 ## Future Improvements
 
-* Add enterprise workflows (HR, Finance)
+* Add enterprise workflows (HR, Finance, Operations)
 * Predictive failure detection
-* Improved agent collaboration
-* Workflow dashboard
+* Improved agent collaboration logic
+* Workflow visualization dashboard
 
 ---
 
@@ -240,18 +305,7 @@ Cost Savings:
 
 This project transforms a chatbot into an autonomous enterprise worker:
 
-* From reactive responses to proactive execution
+* From reactive to proactive systems
 * From single-agent to multi-agent architecture
-* From manual workflows to autonomous systems
+* From manual workflows to autonomous execution
 
----
-
-## Important Note
-
-Main working implementation is inside:
-
-```
-AI_Agent/et_agent_v1/Slack-ClawdBot-main/src/
-```
-
----
