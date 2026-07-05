@@ -1,7 +1,8 @@
 # ET Gen AI Hackathon 2026 – Autonomous Workflow Agent
 
 > **Team: HealthStack103**
-> Building an **Agentic AI System for Autonomous Enterprise Workflows** that executes multi-step tasks, self-heals failures, and maintains full auditability.
+> Building uilding scalable, end-to-end technology solutions across AI/ML, healthcare, and open-source infrastructure
+>  **Agentic AI System for Autonomous Enterprise Workflows** that executes multi-step tasks, self-heals failures, and maintains full auditability.
 
 ---
 
