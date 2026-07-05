@@ -6,7 +6,7 @@
 
 > **Yakshith K D** – Team Lead & ML Developer
 > **Nithesh** – Embedded AI Developer
-? **Sagar K** – Flutter Developer
+> **Sagar K** – Flutter Developer
   
 *  Agent solution : **Agentic AI System for Autonomous Enterprise Workflows** that executes multi-step tasks, self-heals failures, and maintains full auditability.
 
