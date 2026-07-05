@@ -4,11 +4,11 @@
 > Building scalable, end-to-end technology solutions across AI/ML, healthcare, and open-source infrastructure.
 > ## Team Details
 
-* **Yakshith K D** – Team Lead & ML Developer
-* **Nithesh** – Embedded AI Developer
-* **Sagar K** – Flutter Developer
+> **Yakshith K D** – Team Lead & ML Developer
+> **Nithesh** – Embedded AI Developer
+? **Sagar K** – Flutter Developer
   
->  Agent solution : **Agentic AI System for Autonomous Enterprise Workflows** that executes multi-step tasks, self-heals failures, and maintains full auditability.
+*  Agent solution : **Agentic AI System for Autonomous Enterprise Workflows** that executes multi-step tasks, self-heals failures, and maintains full auditability.
 
 
 ## Problem Statement
