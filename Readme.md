@@ -2,7 +2,7 @@
 
 > **Team: HealthStack103**
 > Building scalable, end-to-end technology solutions across AI/ML, healthcare, and open-source infrastructure.
-> ## Team Details
+> **Team Details
 
 > **Yakshith K D** – Team Lead & ML Developer ,
 > **Nithesh** – Embedded AI Developer ,
