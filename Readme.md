@@ -138,42 +138,41 @@ Example:
 
 ```mermaid
 flowchart TD
+    %% Input Ingestion
+    A[Slack Thread / Meeting Transcript] --> B[Slack Agent Ingester]
+    B --> C[CLI Entry Point / Pipeline Trigger]
 
-    A[Meeting Transcript] --> B[CLI Entry Point]
+    %% Orchestration & Reasoning
+    C --> D[Orchestrator / LLM MCP Client]
+    D --> E[Transcript Ingestion & Text Parsing]
+    E --> F[Action Item Extraction & Task Schema]
+    F --> G[Task Classification & Destination Mapping]
 
-    B --> C[Orchestrator]
+    %% MCP Protocol Layer
+    G --> H{MCP Tool Routing}
+    H -->|Engineering Issue| I[GitHub MCP Server]
+    H -->|Documentation / Record| J[Notion MCP Server]
+    H -->|Team Notification| K[Slack MCP Server]
 
-    C --> D[Transcript Processing]
+    %% Tool Execution & Evaluation
+    I --> L{Execution Status}
+    J --> L
+    K --> L
 
-    D --> E[Action Item Extraction]
+    %% Success Path
+    L -->|Success| M[Audit Logger]
+    M --> N[Append Success to audit_trail.json]
 
-    E --> F[Task Classification]
+    %% Failure & Self-Healing Path
+    L -->|Failure / Timeout| O[Self-Healing Recovery Handler]
+    O --> P[Log Retrying State to Audit Log]
+    P --> Q{Recoverable Error?}
+    Q -->|Yes: Retry / Fix Payload| H
+    Q -->|No: Unrecoverable| R[Log Final Failure Reason]
 
-    F --> G{Required Action}
-
-    G -->|Engineering Task| H[GitHub MCP Server]
-
-    G -->|Documentation / Record| I[Notion MCP Server]
-
-    G -->|Notification| J[Slack MCP Server]
-
-    H --> K{Execution Result}
-    I --> K
-    J --> K
-
-    K -->|Success| L[Audit Logger]
-
-    K -->|Failure| M[Self-Healing / Recovery]
-
-    M --> N[Retry / Parameter Adjustment]
-
-    N --> H
-    N --> I
-    N --> J
-
-    L --> O[audit_trail.json]
-
-    O --> P[CLI Result]
+    %% Output Surface
+    N --> S[Post Confirmation to Slack & Console]
+    R --> S
 ```
 
 ---
