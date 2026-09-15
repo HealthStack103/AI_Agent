@@ -36,11 +36,18 @@ import { config } from '../config/index.js';
 import { createModuleLogger } from '../utils/logger.js';
 
 const logger = createModuleLogger('embeddings');
-
+# line 40 to 50 added
 // Initialize OpenAI client
-const openai = new OpenAI({
-  apiKey: config.ai.openaiApiKey,
-});
+// const openai = new OpenAI({
+//   apiKey: config.ai.openaiApiKey,
+// });
+
+
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+const genAI = new GoogleGenerativeAI(
+  process.env.GEMINI_API_KEY
+);
 
 // Embedding model configuration
 // text-embedding-3-small: Good balance of quality and cost

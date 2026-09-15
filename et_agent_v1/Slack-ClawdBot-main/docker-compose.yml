@@ -17,7 +17,9 @@ services:
       
       # AI Configuration
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
-      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      #line 21 and 22 added
+      # - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
       - DEFAULT_MODEL=${DEFAULT_MODEL:-claude-sonnet-4-20250514}
       
       # Application Settings
