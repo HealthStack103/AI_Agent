@@ -1,0 +1,4 @@
+Team Call - Project Sync
+- Nithesh will refactor the backend database connector by Friday to fix connection drops.
+- Yakshith needs to configure the Grafana Loki log drop rules and set up alerts for rate-limit failures.
+- Action: Create high-priority bug tickets for database connection drops and log alert task.
