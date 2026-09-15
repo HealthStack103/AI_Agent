@@ -5,7 +5,6 @@
 An AI-powered meeting follow-up agent that converts unstructured meeting notes into actionable tasks and executes those tasks through **Model Context Protocol (MCP)** tools, with structured logging and failure recovery.
 
 ---
-
 ## 1. Overview
 
 Meetings often produce important action items, but these items are frequently lost across meeting notes, Slack messages, documents, and task trackers.
